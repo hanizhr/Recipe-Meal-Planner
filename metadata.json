@@ -1,0 +1,6 @@
+{
+  "name": "CulinaryHub - Recipe & Meal Planner",
+  "description": "Premium dark-mode food recipe app with weekly meal planning, dynamic ingredient scaling, step-by-step cooking timers, smart grocery list, and free local database storage.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
