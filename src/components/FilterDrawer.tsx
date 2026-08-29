@@ -41,21 +41,21 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
 
   return (
     <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div className="bg-[#121319] border-t sm:border border-[#252834] rounded-t-[32px] sm:rounded-3xl p-6 max-w-md w-full space-y-6 shadow-2xl max-h-[85vh] overflow-y-auto">
+      <div className="bg-[#121319] border-t sm:border border-[#252834] rounded-t-[32px] sm:rounded-3xl p-5 sm:p-6 max-w-md w-full space-y-5 sm:space-y-6 shadow-2xl max-h-[88vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-[#252834]">
-          <h3 className="text-lg font-bold text-white">Filter & Sort Recipes</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white">Filter & Sort Recipes</h3>
           <div className="flex items-center gap-2">
             <button
               onClick={onResetFilters}
-              className="flex items-center gap-1 text-xs text-gray-400 hover:text-white px-2 py-1 rounded-lg hover:bg-white/5"
+              className="flex items-center gap-1 text-xs text-gray-400 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-white/5 touch-manipulation"
             >
-              <RotateCcw className="w-3 h-3" />
+              <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full text-gray-400 hover:text-white hover:bg-white/10"
+              className="w-8 h-8 rounded-full text-gray-400 hover:text-white hover:bg-white/10 flex items-center justify-center touch-manipulation"
             >
               <X className="w-5 h-5" />
             </button>
@@ -77,7 +77,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
               <button
                 key={s.id}
                 onClick={() => onUpdateFilters({ sortBy: s.id as any })}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold text-left transition-all ${
+                className={`py-2.5 px-3 rounded-xl text-xs font-semibold text-left transition-all touch-manipulation active:scale-95 ${
                   filters.sortBy === s.id
                     ? 'bg-[#FF5E3A] text-white shadow-md shadow-[#FF5E3A]/20'
                     : 'bg-[#1A1C24] text-gray-300 hover:text-white border border-[#252834]'
@@ -106,7 +106,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
             step="5"
             value={filters.maxTimeMinutes}
             onChange={(e) => onUpdateFilters({ maxTimeMinutes: parseInt(e.target.value) })}
-            className="w-full accent-[#FF5E3A] cursor-pointer"
+            className="w-full accent-[#FF5E3A] cursor-pointer h-2"
           />
           <div className="flex justify-between text-[10px] text-gray-500 mt-1">
             <span>10 min</span>
@@ -125,7 +125,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
               <button
                 key={diff}
                 onClick={() => onUpdateFilters({ difficulty: diff as any })}
-                className={`py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`py-2.5 rounded-xl text-xs font-bold transition-all touch-manipulation active:scale-95 ${
                   filters.difficulty === diff
                     ? 'bg-[#FF5E3A] text-white'
                     : 'bg-[#1A1C24] text-gray-300 border border-[#252834]'
@@ -149,7 +149,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
                 <button
                   key={tag}
                   onClick={() => toggleTag(tag)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all touch-manipulation active:scale-95 ${
                     isSelected
                       ? 'bg-[#FF5E3A] text-white font-bold shadow-sm'
                       : 'bg-[#1A1C24] text-gray-300 border border-[#252834] hover:border-[#FF5E3A]/40'
@@ -166,7 +166,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
         {/* Apply CTA */}
         <button
           onClick={onClose}
-          className="w-full py-3.5 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-extrabold text-sm shadow-xl shadow-[#FF5E3A]/30 transition-transform active:scale-98"
+          className="w-full py-3.5 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-extrabold text-sm shadow-xl shadow-[#FF5E3A]/30 transition-transform active:scale-95 touch-manipulation"
         >
           Apply Filters
         </button>

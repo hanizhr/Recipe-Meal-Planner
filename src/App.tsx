@@ -34,7 +34,6 @@ import { MealPlannerView } from './components/MealPlannerView';
 import { GroceryListView } from './components/GroceryListView';
 import { RecipeCreatorModal } from './components/RecipeCreatorModal';
 import { FilterDrawer } from './components/FilterDrawer';
-import { FlutterCodeHubModal } from './components/FlutterCodeHubModal';
 import { ProfileModal } from './components/ProfileModal';
 import { OnboardingModal } from './components/OnboardingModal';
 import { BottomNavBar, TabType } from './components/BottomNavBar';
@@ -68,7 +67,6 @@ export default function App() {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
   const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
-  const [showFlutterHubModal, setShowFlutterHubModal] = useState<boolean>(false);
   const [showProfileModal, setShowProfileModal] = useState<boolean>(false);
 
   // Sync state helpers
@@ -332,65 +330,6 @@ export default function App() {
       );
     }
 
-    if (activeTab === 'flutter') {
-      return (
-        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 space-y-6">
-          <div className="bg-gradient-to-r from-[#02569B]/30 to-[#14161F] border border-[#02569B]/40 rounded-3xl p-6 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#54C5F8]/20 text-[#54C5F8] border border-[#54C5F8]/40">
-                Flutter 3.x + Free SQLite Engine
-              </span>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
-                Flutter Dart Code & Architecture Hub
-              </h2>
-              <p className="text-xs text-gray-300 mt-1 max-w-lg">
-                Complete production-ready Dart models, SQLite database manager (<code className="text-[#FF5E3A]">sqflite</code>), and Material 3 Dark UI code matching this exact design.
-              </p>
-            </div>
-
-            <button
-              onClick={() => setShowFlutterHubModal(true)}
-              className="px-5 py-3 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-extrabold text-xs shadow-lg shadow-[#FF5E3A]/30 transition-all hover:scale-105"
-            >
-              Open Full Code Inspector
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-[#1A1C24] border border-[#252834] rounded-2xl p-4 space-y-2">
-              <div className="w-8 h-8 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center font-bold text-xs">
-                01
-              </div>
-              <h4 className="text-sm font-bold text-white">Free SQLite Storage</h4>
-              <p className="text-xs text-gray-400">
-                Uses the free <code className="text-gray-300">sqflite</code> plugin for persistent offline relational storage without cloud costs.
-              </p>
-            </div>
-
-            <div className="bg-[#1A1C24] border border-[#252834] rounded-2xl p-4 space-y-2">
-              <div className="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs">
-                02
-              </div>
-              <h4 className="text-sm font-bold text-white">Weekly Meal Planner</h4>
-              <p className="text-xs text-gray-400">
-                7-Day interactive schedule with auto-aggregating grocery shopping generator.
-              </p>
-            </div>
-
-            <div className="bg-[#1A1C24] border border-[#252834] rounded-2xl p-4 space-y-2">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
-                03
-              </div>
-              <h4 className="text-sm font-bold text-white">Pixel-Perfect Dark UI</h4>
-              <p className="text-xs text-gray-400">
-                Warm coral highlights (<code className="text-gray-300">#FF5E3A</code>), smooth cards, and responsive layouts.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     // Default Home View
     return (
       <div className="w-full max-w-4xl mx-auto space-y-6 pb-24">
@@ -529,7 +468,6 @@ export default function App() {
           onOpenFilter={() => setShowFilterModal(true)}
           onOpenProfile={() => setShowProfileModal(true)}
           onOpenCreateRecipe={() => setShowCreateModal(true)}
-          onOpenFlutterHub={() => setShowFlutterHubModal(true)}
           isPhoneFrame={isPhoneFrame}
           onToggleFrame={() => setIsPhoneFrame(!isPhoneFrame)}
           activeFilterCount={activeFilterCount}
@@ -543,13 +481,7 @@ export default function App() {
         {/* Floating Bottom Navigation Bar */}
         <BottomNavBar
           activeTab={activeTab}
-          onTabChange={(tab) => {
-            if (tab === 'flutter') {
-              setShowFlutterHubModal(true);
-            } else {
-              setActiveTab(tab);
-            }
-          }}
+          onTabChange={(tab) => setActiveTab(tab)}
           groceryCount={groceryList.filter(i => !i.isCompleted).length}
           plannedCount={mealPlan.length}
           favoritesCount={favoriteRecipes.length}
@@ -584,13 +516,7 @@ export default function App() {
         onResetFilters={() => setFilters(INITIAL_FILTERS)}
       />
 
-      {/* 4. Flutter Code Hub & Architecture Explorer Modal */}
-      <FlutterCodeHubModal
-        isOpen={showFlutterHubModal}
-        onClose={() => setShowFlutterHubModal(false)}
-      />
-
-      {/* 5. User Profile & Free Database Management Modal */}
+      {/* 4. User Profile & Local Storage Management Modal */}
       <ProfileModal
         isOpen={showProfileModal}
         onClose={() => setShowProfileModal(false)}
@@ -603,7 +529,7 @@ export default function App() {
         onOpenOnboarding={() => setShowOnboarding(true)}
       />
 
-      {/* 6. Onboarding Splash Modal (Matching Screen 1) */}
+      {/* 5. Onboarding Splash Modal (Matching Screen 1) */}
       <OnboardingModal
         isOpen={showOnboarding}
         onClose={handleCloseOnboarding}

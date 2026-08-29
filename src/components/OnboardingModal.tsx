@@ -100,7 +100,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
               </button>
 
               <div className="mt-3 text-center">
-                <span className="text-[11px] text-gray-500">100% Free • Offline Local Database</span>
+                <span className="text-[11px] text-gray-500">Offline Ready • Instant Synchronization</span>
               </div>
             </div>
           </div>

@@ -77,7 +77,15 @@ export class StorageService {
         this.saveRecipes(INITIAL_RECIPES);
         return INITIAL_RECIPES;
       }
-      return JSON.parse(data);
+      const parsed: Recipe[] = JSON.parse(data);
+      const existingIds = new Set(parsed.map(r => r.id));
+      const newDefaults = INITIAL_RECIPES.filter(r => !existingIds.has(r.id));
+      if (newDefaults.length > 0) {
+        const merged = [...parsed, ...newDefaults];
+        this.saveRecipes(merged);
+        return merged;
+      }
+      return parsed;
     } catch (e) {
       console.error('Failed to load recipes from local storage', e);
       return INITIAL_RECIPES;

@@ -22,7 +22,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       <div
         id={`recipe-card-trending-${recipe.id}`}
         onClick={() => onSelect(recipe)}
-        className="group relative bg-[#1A1C24] hover:bg-[#1E212B] border border-[#252834] hover:border-[#FF5E3A]/50 rounded-3xl p-3.5 transition-all duration-300 shadow-lg hover:shadow-2xl cursor-pointer overflow-hidden flex flex-col sm:flex-row gap-4 items-stretch"
+        className="group relative bg-[#1A1C24] hover:bg-[#1E212B] border border-[#252834] hover:border-[#FF5E3A]/50 rounded-3xl p-3 sm:p-4 transition-all duration-300 shadow-lg hover:shadow-2xl cursor-pointer overflow-hidden flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-stretch touch-manipulation active:scale-[0.99]"
       >
         {/* Left/Content Info */}
         <div className="flex-1 flex flex-col justify-between order-2 sm:order-1 py-1">
@@ -46,7 +46,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#252834]">
+          <div className="flex items-center justify-between mt-3.5 pt-3 border-t border-[#252834]">
             <div className="flex items-center gap-3 text-xs text-gray-300 font-medium">
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5 text-[#FF5E3A]" />
@@ -65,12 +65,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                   id={`quick-plan-btn-${recipe.id}`}
                   onClick={(e) => onQuickAddToMealPlan(recipe, e)}
                   title="Add to Weekly Meal Plan"
-                  className="p-2 rounded-full bg-[#252834] hover:bg-[#FF5E3A] text-gray-300 hover:text-white transition-colors"
+                  className="p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-[#252834] hover:bg-[#FF5E3A] text-gray-300 hover:text-white transition-colors active:scale-90 touch-manipulation"
                 >
-                  <CalendarPlus className="w-3.5 h-3.5" />
+                  <CalendarPlus className="w-4 h-4" />
                 </button>
               )}
-              <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#FF5E3A] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+              <div className="w-9 h-9 rounded-full bg-white/10 group-hover:bg-[#FF5E3A] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-105">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
@@ -78,10 +78,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </div>
 
         {/* Right Food Photo matching mockup */}
-        <div className="relative w-full sm:w-44 h-44 sm:h-auto rounded-2xl overflow-hidden shrink-0 order-1 sm:order-2">
+        <div className="relative w-full sm:w-48 h-48 sm:h-auto rounded-2xl overflow-hidden shrink-0 order-1 sm:order-2">
           <img
             src={recipe.heroImage}
             alt={recipe.title}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 sm:hidden" />
@@ -90,7 +91,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           <button
             id={`fav-btn-${recipe.id}`}
             onClick={(e) => onToggleFavorite(recipe.id, e)}
-            className="absolute top-2.5 right-2.5 sm:top-2.5 sm:left-2.5 p-2 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80 text-white transition-transform active:scale-90"
+            className="absolute top-2.5 right-2.5 sm:top-2.5 sm:left-2.5 p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80 text-white transition-transform active:scale-90 touch-manipulation"
             title={recipe.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
           >
             <Heart
@@ -101,7 +102,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           </button>
 
           {/* Difficulty Badge */}
-          <span className="absolute bottom-2.5 left-2.5 sm:bottom-2.5 sm:right-2.5 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-black/70 backdrop-blur-md text-gray-200">
+          <span className="absolute bottom-2.5 left-2.5 sm:bottom-2.5 sm:right-2.5 px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-black/70 backdrop-blur-md text-gray-200">
             {recipe.difficulty}
           </span>
         </div>
@@ -114,13 +115,14 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     <div
       id={`recipe-card-${recipe.id}`}
       onClick={() => onSelect(recipe)}
-      className="group relative bg-[#1A1C24] hover:bg-[#1E212B] border border-[#252834] hover:border-[#FF5E3A]/50 rounded-3xl p-3 transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer flex flex-col justify-between"
+      className="group relative bg-[#1A1C24] hover:bg-[#1E212B] border border-[#252834] hover:border-[#FF5E3A]/50 rounded-3xl p-3 transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer flex flex-col justify-between touch-manipulation active:scale-[0.98]"
     >
       {/* Top Image Container */}
-      <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-3">
+      <div className="relative w-full h-44 xs:h-40 rounded-2xl overflow-hidden mb-3">
         <img
           src={recipe.heroImage}
           alt={recipe.title}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -129,7 +131,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <button
           id={`fav-btn-std-${recipe.id}`}
           onClick={(e) => onToggleFavorite(recipe.id, e)}
-          className="absolute top-2.5 right-2.5 p-2 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80 text-white transition-transform active:scale-90"
+          className="absolute top-2 right-2 p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80 text-white transition-transform active:scale-90 touch-manipulation"
         >
           <Heart
             className={`w-4 h-4 transition-colors ${
@@ -139,7 +141,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         </button>
 
         {/* Category Pill */}
-        <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#FF5E3A]/90 text-white backdrop-blur-md">
+        <span className="absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FF5E3A]/90 text-white backdrop-blur-md">
           {recipe.category}
         </span>
 
@@ -164,15 +166,15 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         {/* Bottom meta */}
         <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-[#252834] text-[11px] text-gray-300">
           <span className="flex items-center gap-1">
-            <Clock className="w-3 h-3 text-[#FF5E3A]" />
+            <Clock className="w-3.5 h-3.5 text-[#FF5E3A]" />
             {recipe.totalTimeMinutes}m
           </span>
           <span className="flex items-center gap-1 text-gray-400">
-            <Flame className="w-3 h-3 text-orange-400" />
+            <Flame className="w-3.5 h-3.5 text-orange-400" />
             {recipe.calories} kcal
           </span>
 
-          <div className="w-6 h-6 rounded-full bg-[#252834] group-hover:bg-[#FF5E3A] text-white flex items-center justify-center transition-colors">
+          <div className="w-7 h-7 rounded-full bg-[#252834] group-hover:bg-[#FF5E3A] text-white flex items-center justify-center transition-colors">
             <ArrowUpRight className="w-3.5 h-3.5" />
           </div>
         </div>
@@ -180,3 +182,4 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     </div>
   );
 };
+

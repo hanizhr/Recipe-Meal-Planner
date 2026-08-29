@@ -153,26 +153,26 @@ export const RecipeCreatorModal: React.FC<RecipeCreatorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#0F1015] border border-[#252834] rounded-3xl p-5 sm:p-7 max-w-2xl w-full space-y-6 shadow-2xl my-auto max-h-[90vh] overflow-y-auto"
+        className="bg-[#0F1015] border-t sm:border border-[#252834] rounded-t-[32px] sm:rounded-3xl p-4 sm:p-7 max-w-2xl w-full space-y-5 sm:space-y-6 shadow-2xl my-0 sm:my-auto max-h-[92vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-[#252834]">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center shrink-0">
               <ChefHat className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg sm:text-xl font-extrabold text-white">Create New Recipe</h2>
-              <span className="text-xs text-gray-400">Stores directly to your free local database</span>
+              <h2 className="text-base sm:text-xl font-extrabold text-white">Create New Recipe</h2>
+              <span className="text-[11px] sm:text-xs text-gray-400">Add custom ingredients, timers, and steps</span>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-400 hover:text-white"
+            className="w-8 h-8 rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-400 hover:text-white flex items-center justify-center touch-manipulation"
           >
             <X className="w-5 h-5" />
           </button>

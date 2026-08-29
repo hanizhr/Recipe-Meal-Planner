@@ -92,22 +92,22 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-[#121319] border border-[#252834] rounded-3xl p-6 max-w-md w-full space-y-6 shadow-2xl my-auto">
+    <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 overflow-y-auto">
+      <div className="bg-[#121319] border-t sm:border border-[#252834] rounded-t-[32px] sm:rounded-3xl p-5 sm:p-6 max-w-md w-full space-y-5 sm:space-y-6 shadow-2xl my-0 sm:my-auto max-h-[90vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-[#252834]">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center shrink-0">
               <User className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Profile & Database</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">Profile & Database</h2>
               <span className="text-[11px] text-gray-400">Manage targets and local backup</span>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-gray-400 hover:text-white"
+            className="w-8 h-8 rounded-full bg-[#1A1C24] text-gray-400 hover:text-white flex items-center justify-center touch-manipulation"
           >
             <X className="w-5 h-5" />
           </button>
@@ -159,12 +159,12 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           </button>
         </form>
 
-        {/* Database Management & Free Storage */}
+        {/* Database Management & Local Storage */}
         <div className="pt-3 border-t border-[#252834] space-y-3">
           <div className="flex items-center gap-2">
             <Database className="w-4 h-4 text-emerald-400" />
             <h3 className="text-xs font-bold text-white uppercase tracking-wider">
-              Free Local Database Backup
+              Data Backup & Restore
             </h3>
           </div>
 

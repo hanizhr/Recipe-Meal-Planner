@@ -156,37 +156,37 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
 
       {/* Grouped Category Lists */}
       {groupedItems.length > 0 ? (
-        <div className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
           {groupedItems.map(group => {
             const Icon = CATEGORY_ICONS[group.category] || Package;
             return (
               <div
                 key={group.category}
-                className="bg-[#1A1C24] border border-[#252834] rounded-3xl p-5 space-y-3"
+                className="bg-[#1A1C24] border border-[#252834] rounded-3xl p-3.5 sm:p-5 space-y-3"
               >
                 <div className="flex items-center gap-2 pb-2 border-b border-[#252834]">
                   <div className="w-7 h-7 rounded-lg bg-[#252834] text-[#FF5E3A] flex items-center justify-center">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                  <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
                     {group.category} ({group.items.length})
                   </h3>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5 sm:space-y-2">
                   {group.items.map(item => (
                     <div
                       key={item.id}
                       onClick={() => onToggleItem(item.id)}
-                      className={`flex items-center justify-between p-3 rounded-2xl cursor-pointer transition-all ${
+                      className={`flex items-center justify-between p-2.5 sm:p-3 rounded-2xl cursor-pointer transition-all min-h-[46px] touch-manipulation active:scale-[0.99] ${
                         item.isCompleted
                           ? 'bg-black/30 text-gray-500 line-through'
                           : 'bg-[#161822] hover:bg-[#1E202B] text-gray-200'
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                         <div
-                          className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-colors ${
+                          className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-colors shrink-0 ${
                             item.isCompleted
                               ? 'bg-emerald-500 border-emerald-500 text-white'
                               : 'border-[#2F3342] bg-[#1A1C24]'
@@ -194,17 +194,17 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
                         >
                           {item.isCompleted && <Check className="w-4 h-4" />}
                         </div>
-                        <div>
-                          <span className="text-sm font-semibold">{item.name}</span>
+                        <div className="min-w-0">
+                          <span className="text-xs sm:text-sm font-semibold truncate block">{item.name}</span>
                           {item.recipeSource && (
-                            <span className="text-[10px] text-gray-500 block">
+                            <span className="text-[10px] text-gray-500 block truncate">
                               From: {item.recipeSource}
                             </span>
                           )}
                         </div>
                       </div>
 
-                      <span className="text-xs font-mono font-bold text-[#FF5E3A]">
+                      <span className="text-xs font-mono font-bold text-[#FF5E3A] shrink-0 ml-2">
                         {item.amount} {item.unit}
                       </span>
                     </div>
@@ -215,17 +215,17 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
           })}
         </div>
       ) : (
-        <div className="text-center py-16 bg-[#161822] border border-[#252834] rounded-3xl p-8 space-y-3">
-          <div className="w-16 h-16 rounded-2xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center mx-auto">
-            <ShoppingCart className="w-8 h-8" />
+        <div className="text-center py-12 sm:py-16 bg-[#161822] border border-[#252834] rounded-3xl p-6 sm:p-8 space-y-3">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center mx-auto">
+            <ShoppingCart className="w-7 h-7 sm:w-8 sm:h-8" />
           </div>
-          <h3 className="text-lg font-bold text-white">Your Shopping List is Empty</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white">Your Shopping List is Empty</h3>
           <p className="text-xs text-gray-400 max-w-sm mx-auto">
             Add ingredients from any recipe, click "Smart Grocery Sync" in the Meal Planner, or tap the button below to add custom items.
           </p>
           <button
             onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#FF5E3A] text-white text-xs font-bold shadow-md shadow-[#FF5E3A]/30 mt-2"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#FF5E3A] text-white text-xs font-bold shadow-md shadow-[#FF5E3A]/30 mt-2 touch-manipulation active:scale-95"
           >
             <Plus className="w-4 h-4" />
             <span>Add Custom Ingredient</span>
@@ -235,10 +235,10 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
 
       {/* Add Custom Item Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
           <form
             onSubmit={handleCreateItem}
-            className="bg-[#1A1C24] border border-[#252834] rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl"
+            className="bg-[#1A1C24] border border-[#252834] rounded-t-[32px] sm:rounded-3xl p-5 sm:p-6 max-w-sm w-full space-y-4 shadow-2xl pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]"
           >
             <div className="flex items-center justify-between pb-2 border-b border-[#252834]">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -248,7 +248,7 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
               <button
                 type="button"
                 onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-white"
+                className="w-8 h-8 rounded-full bg-[#252834] text-gray-400 hover:text-white flex items-center justify-center touch-manipulation"
               >
                 ✕
               </button>
@@ -262,7 +262,7 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
                 value={customName}
                 onChange={(e) => setCustomName(e.target.value)}
                 placeholder="e.g. Organic Avocados"
-                className="w-full bg-[#161822] text-sm text-white px-4 py-2.5 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
+                className="w-full bg-[#161822] text-sm text-white px-4 py-3 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
               />
             </div>
 
@@ -276,7 +276,7 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
                   required
                   value={customAmount}
                   onChange={(e) => setCustomAmount(e.target.value)}
-                  className="w-full bg-[#161822] text-sm text-white px-4 py-2.5 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
+                  className="w-full bg-[#161822] text-sm text-white px-4 py-3 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
                 />
               </div>
               <div>
@@ -285,8 +285,8 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
                   type="text"
                   value={customUnit}
                   onChange={(e) => setCustomUnit(e.target.value)}
-                  placeholder="e.g. lbs, count, tbsp"
-                  className="w-full bg-[#161822] text-sm text-white px-4 py-2.5 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
+                  placeholder="e.g. lbs, count"
+                  className="w-full bg-[#161822] text-sm text-white px-4 py-3 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
                 />
               </div>
             </div>
@@ -296,7 +296,7 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
               <select
                 value={customCategory}
                 onChange={(e) => setCustomCategory(e.target.value as IngredientCategory)}
-                className="w-full bg-[#161822] text-sm text-white px-4 py-2.5 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
+                className="w-full bg-[#161822] text-sm text-white px-4 py-3 rounded-xl border border-[#252834] focus:outline-none focus:border-[#FF5E3A]"
               >
                 <option value="produce">Produce (Fruits & Veggies)</option>
                 <option value="meat">Meat & Poultry</option>
@@ -311,13 +311,14 @@ export const GroceryListView: React.FC<GroceryListViewProps> = ({
 
             <button
               type="submit"
-              className="w-full py-3 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-bold text-sm shadow-md shadow-[#FF5E3A]/30 transition-transform active:scale-95 mt-2"
+              className="w-full py-3.5 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-bold text-sm shadow-md shadow-[#FF5E3A]/30 transition-transform active:scale-95 mt-2 touch-manipulation"
             >
               Add to Grocery List
             </button>
           </form>
         </div>
       )}
+
     </div>
   );
 };

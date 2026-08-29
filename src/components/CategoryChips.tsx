@@ -46,34 +46,33 @@ export const CategoryChips: React.FC<CategoryChipsProps> = ({
   recipeCounts,
 }) => {
   return (
-    <div className="w-full px-4 sm:px-6 my-3">
-      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-1">
+    <div className="w-full px-3.5 sm:px-6 my-2 sm:my-3">
+      <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar py-1 touch-pan-x -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
         {CATEGORIES.map((cat) => {
           const isSelected = selectedCategory === cat.id;
           const Icon = cat.icon;
-          const count = recipeCounts[cat.id] || 0;
 
           return (
             <button
               key={cat.id}
               id={`cat-chip-${cat.id.toLowerCase()}`}
               onClick={() => onSelectCategory(cat.id)}
-              className="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none"
+              className="flex flex-col items-center gap-1.5 shrink-0 group focus:outline-none touch-manipulation active:scale-95 transition-transform"
             >
               {/* Circular Icon Container matching mockup */}
               <div
-                className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-200 ${
                   isSelected
-                    ? 'bg-[#FF5E3A] text-white shadow-lg shadow-[#FF5E3A]/30 scale-105 ring-2 ring-[#FF5E3A]/40'
+                    ? 'bg-[#FF5E3A] text-white shadow-lg shadow-[#FF5E3A]/30 ring-2 ring-[#FF5E3A]/50'
                     : 'bg-[#1A1C24] text-gray-400 group-hover:text-white group-hover:bg-[#252834] border border-[#252834]'
                 }`}
               >
-                <Icon className="w-6 h-6 transition-transform group-hover:scale-110" />
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:scale-110" />
               </div>
 
               {/* Label */}
               <span
-                className={`text-xs font-semibold tracking-tight transition-colors ${
+                className={`text-[11px] sm:text-xs font-semibold tracking-tight transition-colors whitespace-nowrap ${
                   isSelected ? 'text-[#FF5E3A] font-bold' : 'text-gray-400 group-hover:text-gray-200'
                 }`}
               >
@@ -86,3 +85,4 @@ export const CategoryChips: React.FC<CategoryChipsProps> = ({
     </div>
   );
 };
+

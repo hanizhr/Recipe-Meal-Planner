@@ -142,33 +142,33 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 bg-[#0B0C10]/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 overflow-y-auto"
+        className="fixed inset-0 z-50 bg-[#0B0C10]/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 pt-[max(1rem,env(safe-area-inset-top,1rem))] pb-[max(1.25rem,env(safe-area-inset-bottom,1.25rem))] overflow-y-auto"
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between border-b border-[#252834] pb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#FF5E3A]/20 border border-[#FF5E3A]/30 flex items-center justify-center text-[#FF5E3A]">
-              <ChefHat className="w-5 h-5" />
+        <div className="flex items-center justify-between border-b border-[#252834] pb-3 sm:pb-4">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FF5E3A]/20 border border-[#FF5E3A]/30 flex items-center justify-center text-[#FF5E3A] shrink-0">
+              <ChefHat className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <span className="text-[11px] font-bold text-[#FF5E3A] uppercase tracking-wider">Live Cooking Assistant</span>
-              <h2 className="text-base sm:text-lg font-extrabold text-white truncate max-w-xs sm:max-w-md">
+            <div className="min-w-0">
+              <span className="text-[10px] sm:text-[11px] font-bold text-[#FF5E3A] uppercase tracking-wider block">Live Cooking</span>
+              <h2 className="text-sm sm:text-lg font-extrabold text-white truncate max-w-[200px] sm:max-w-md">
                 {recipe.title}
               </h2>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className="p-2.5 rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-300 hover:text-white transition-colors"
+              className="p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-300 hover:text-white transition-colors touch-manipulation active:scale-90"
               title={soundEnabled ? "Sound Alert Enabled" : "Muted"}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4 text-[#FF5E3A]" /> : <VolumeX className="w-4 h-4 text-gray-500" />}
             </button>
             <button
               onClick={onClose}
-              className="p-2.5 rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-300 hover:text-white transition-colors"
+              className="p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-[#1A1C24] hover:bg-[#252834] text-gray-300 hover:text-white transition-colors touch-manipulation active:scale-90"
             >
               <X className="w-5 h-5" />
             </button>
@@ -176,7 +176,7 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
         </div>
 
         {/* Step Progress Bar */}
-        <div className="my-4">
+        <div className="my-3 sm:my-4">
           <div className="flex items-center justify-between text-xs text-gray-400 font-semibold mb-2">
             <span>Step {currentStepIndex + 1} of {totalSteps}</span>
             <span>{Math.round(((currentStepIndex + 1) / totalSteps) * 100)}% Completed</span>
@@ -194,63 +194,63 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
         </div>
 
         {/* Center Main Step Content */}
-        <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full my-4">
+        <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full my-2 sm:my-4">
           <motion.div
             key={currentStepIndex}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="bg-[#161822] border border-[#252834] rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6"
+            className="bg-[#161822] border border-[#252834] rounded-3xl p-4 sm:p-8 shadow-2xl space-y-4 sm:space-y-6"
           >
             {/* Step Number Tag */}
             <div className="flex items-center justify-between">
-              <span className="px-3.5 py-1.5 rounded-full text-xs font-black bg-[#FF5E3A] text-white shadow-md shadow-[#FF5E3A]/20">
+              <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-black bg-[#FF5E3A] text-white shadow-md shadow-[#FF5E3A]/20">
                 STEP {currentStep.stepNumber.toString().padStart(2, '0')}
               </span>
 
               <button
                 onClick={() => toggleStepCompleted(currentStep.stepNumber)}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full text-xs font-bold transition-all touch-manipulation active:scale-95 ${
                   completedSteps.includes(currentStep.stepNumber)
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                     : 'bg-[#252834] text-gray-400 hover:text-white'
                 }`}
               >
                 <CheckCircle2 className="w-4 h-4" />
-                {completedSteps.includes(currentStep.stepNumber) ? 'Marked Done' : 'Mark as Done'}
+                {completedSteps.includes(currentStep.stepNumber) ? 'Marked Done' : 'Mark Done'}
               </button>
             </div>
 
             {/* Step Title & Instruction */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
+              <h3 className="text-lg sm:text-2xl font-black text-white leading-tight mb-2 sm:mb-3">
                 {currentStep.title}
               </h3>
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-medium">
+              <p className="text-sm sm:text-lg text-gray-300 leading-relaxed font-medium">
                 {currentStep.instruction}
               </p>
             </div>
 
             {/* Step Duration & Interactive Timer if applicable */}
             {timerSecondsLeft !== null && (
-              <div className="bg-[#1E202B] rounded-2xl p-4 sm:p-5 border border-[#2F3342] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-[#1E202B] rounded-2xl p-3.5 sm:p-5 border border-[#2F3342] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center">
-                    <Timer className="w-6 h-6 animate-pulse" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#FF5E3A]/20 text-[#FF5E3A] flex items-center justify-center shrink-0">
+                    <Timer className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                   </div>
                   <div>
-                    <span className="text-xs text-gray-400 font-semibold">{currentStep.timerLabel || 'Step Timer'}</span>
-                    <div className="text-2xl sm:text-3xl font-mono font-black text-white tracking-wider">
+                    <span className="text-[11px] sm:text-xs text-gray-400 font-semibold">{currentStep.timerLabel || 'Step Timer'}</span>
+                    <div className="text-xl sm:text-3xl font-mono font-black text-white tracking-wider">
                       {formatTimer(timerSecondsLeft)}
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                   <button
                     id="cooking-timer-toggle-btn"
                     onClick={() => setIsTimerRunning(!isTimerRunning)}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all active:scale-95 ${
+                    className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full font-bold text-sm shadow-md transition-all active:scale-95 touch-manipulation ${
                       isTimerRunning
                         ? 'bg-amber-500 hover:bg-amber-600 text-black'
                         : 'bg-[#FF5E3A] hover:bg-[#FF7043] text-white shadow-[#FF5E3A]/30'
@@ -272,7 +272,7 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
                       setIsTimerRunning(false);
                       setTimerSecondsLeft((currentStep.durationMinutes || 5) * 60);
                     }}
-                    className="p-2.5 rounded-full bg-[#252834] hover:bg-[#2F3342] text-gray-300 hover:text-white transition-colors"
+                    className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-[#252834] hover:bg-[#2F3342] text-gray-300 hover:text-white transition-colors touch-manipulation active:scale-90"
                     title="Reset Timer"
                   >
                     <RotateCcw className="w-4 h-4" />
@@ -284,24 +284,24 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
         </div>
 
         {/* Bottom Navigation Buttons */}
-        <div className="max-w-2xl mx-auto w-full flex items-center justify-between gap-4 pt-4 border-t border-[#252834]">
+        <div className="max-w-2xl mx-auto w-full flex items-center justify-between gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-[#252834]">
           <button
             onClick={handlePrev}
             disabled={currentStepIndex === 0}
-            className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm transition-all ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-3 min-h-[46px] rounded-2xl font-bold text-xs sm:text-sm transition-all touch-manipulation active:scale-95 ${
               currentStepIndex === 0
                 ? 'opacity-40 cursor-not-allowed bg-[#1A1C24] text-gray-500'
                 : 'bg-[#1A1C24] hover:bg-[#252834] text-white'
             }`}
           >
             <ChevronLeft className="w-4 h-4" />
-            Previous
+            <span>Prev</span>
           </button>
 
           <button
             id="cooking-next-step-btn"
             onClick={handleNext}
-            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-8 py-3 rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-extrabold text-sm shadow-xl shadow-[#FF5E3A]/30 transition-all hover:scale-105 active:scale-95"
+            className="flex-1 flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] rounded-2xl bg-[#FF5E3A] hover:bg-[#FF7043] text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-[#FF5E3A]/30 transition-all active:scale-95 touch-manipulation"
           >
             {isLastStep ? (
               <>
@@ -309,7 +309,7 @@ export const InteractiveCookingMode: React.FC<InteractiveCookingModeProps> = ({
               </>
             ) : (
               <>
-                Next Step <ChevronRight className="w-4 h-4" />
+                <span>Next Step</span> <ChevronRight className="w-4 h-4" />
               </>
             )}
           </button>
